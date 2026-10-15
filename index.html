@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cangas para o verão</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,0..100;1,9..144,300..600,0..100&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>
+/* Layout: creme quente com tinta aerografada em degradê (lavanda, água, menta, amarelo, pêssego, coral, magenta). Um vaso flutua sobre o degradê com sombra amarelada, como na referência. As cangas são as protagonistas; as ilustrações da Kami são ornamento em tinta de uma só cor. */
+:root {
+  --bg: #fdf8ea;
+  --surface: #fffcf3;
+  --fg: #2b2140;
+  --ink: #2b2140;
+  --hero-ink: #2b2140;
+  --muted: #6a6074;
+  --line: #e6dcc5;
+  --accent: #2b2140;
+  --accent-fg: #fdf8ea;
+  --btn-hover-fg: #2b2140;
+  --glow: rgba(236, 184, 58, .42);
+  --c1: #a9a6ee;
+  --c2: #5bc8c4;
+  --c3: #7bd7a2;
+  --c4: #fff05e;
+  --c5: #f7a29a;
+  --c6: #f2705f;
+  --c7: #d8508f;
+  --t1: #6a60d6;
+  --t2: #14948f;
+  --t3: #c98410;
+  --t4: #d2437a;
+  --wash: linear-gradient(120deg, rgba(169,166,238,.38), rgba(91,200,196,.30) 35%, rgba(255,240,94,.36) 65%, rgba(247,162,154,.42));
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1a1424;
+    --surface: #251d33;
+    --fg: #f7f0e2;
+    --ink: #f7f0e2;
+    --muted: #b3a8c2;
+    --line: #3a2f4d;
+    --accent: #f7f0e2;
+    --accent-fg: #1a1424;
+    --glow: rgba(150, 120, 255, .30);
+    --t1: #a9a6ee;
+    --t2: #5bc8c4;
+    --t3: #ffd45e;
+    --t4: #f79ac0;
+    --wash: linear-gradient(120deg, rgba(169,166,238,.30), rgba(91,200,196,.22) 35%, rgba(255,240,94,.22) 65%, rgba(247,162,154,.30));
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1a1424;
+  --surface: #251d33;
+  --fg: #f7f0e2;
+  --ink: #f7f0e2;
+  --muted: #b3a8c2;
+  --line: #3a2f4d;
+  --accent: #f7f0e2;
+  --accent-fg: #1a1424;
+  --glow: rgba(150, 120, 255, .30);
+  --t1: #a9a6ee;
+  --t2: #5bc8c4;
+  --t3: #ffd45e;
+  --t4: #f79ac0;
+  --wash: linear-gradient(120deg, rgba(169,166,238,.30), rgba(91,200,196,.22) 35%, rgba(255,240,94,.22) 65%, rgba(247,162,154,.30));
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(55% 36% at 100% 0%, color-mix(in srgb, var(--c1) 26%, transparent), transparent),
+    radial-gradient(50% 30% at 0% 46%, color-mix(in srgb, var(--c4) 20%, transparent), transparent),
+    radial-gradient(55% 30% at 100% 82%, color-mix(in srgb, var(--c5) 22%, transparent), transparent);
+  background-repeat: no-repeat;
+  color: var(--fg);
+  font: 400 16px/1.55 var(--font-body);
+  padding-block: 28px 56px;
+  position: relative;
+  overflow-x: clip;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--fg); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.wrap { position: relative; z-index: 1; max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 72px; }
+
+/* tinta de uma cor aplicada por máscara nas ilustrações */
+.ink {
+  display: block; background-color: var(--ink);
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+  -webkit-mask-size: contain; mask-size: contain;
+}
+.m-logo { -webkit-mask-image: url("img/logo.png"); mask-image: url("img/logo.png"); }
+.m-vaso { -webkit-mask-image: url("img/art-vaso.png"); mask-image: url("img/art-vaso.png"); }
+.m-flor { -webkit-mask-image: url("img/art-flor.png"); mask-image: url("img/art-flor.png"); }
+.m-rosto { -webkit-mask-image: url("img/art-vaso-rosto.png"); mask-image: url("img/art-vaso-rosto.png"); }
+
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo { width: 104px; aspect-ratio: 144 / 78; }
+.insta { font-size: 14px; color: var(--muted); }
+
+.hero { display: flex; flex-direction: column; gap: 18px; margin-bottom: -40px; }
+.hero-text { display: flex; flex-direction: column; gap: 18px; max-width: 640px; min-width: 0; }
+h1 {
+  font: 400 clamp(46px, 8.4vw, 88px)/1 var(--font-display); font-variation-settings: "SOFT" 100;
+  letter-spacing: -.012em; margin: 0; text-wrap: balance;
+}
+h1 em {
+  font-style: italic; display: inline-block; padding-bottom: .08em; color: var(--t4);
+  background: linear-gradient(95deg, var(--t1), var(--t2) 35%, var(--t3) 65%, var(--t4));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.lede { max-width: 46ch; color: var(--muted); margin: 0; font-size: 18px; }
+.notice { font-size: 14px; color: var(--muted); max-width: 52ch; margin: 0; }
+
+/* vaso grande como marca d'água, atrás do conteúdo */
+.watermark {
+  position: absolute; z-index: 0; pointer-events: none; opacity: .085;
+  top: 56px; right: max(-70px, -4vw); width: min(640px, 92vw); aspect-ratio: 566 / 1000;
+}
+
+h2 { font: 400 clamp(30px, 4.6vw, 42px)/1.1 var(--font-display); font-variation-settings: "SOFT" 100; margin: 0; text-wrap: balance; }
+.section-head { display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; }
+.section-head p { margin: 0; color: var(--muted); max-width: 60ch; }
+
+.products { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 36px; }
+.product { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.gallery { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.stage { aspect-ratio: 4 / 5; max-width: 100%; border-radius: 24px; overflow: hidden; background: var(--surface); box-shadow: 0 30px 40px -26px var(--glow); }
+.stage img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.thumbs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.thumb {
+  padding: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; cursor: pointer;
+  background: var(--surface); aspect-ratio: 3 / 2; display: block; opacity: .72; transition: opacity .15s, border-color .15s;
+}
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb:hover { opacity: 1; }
+.thumb[aria-pressed="true"] { opacity: 1; border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+.product h3 { font: italic 400 30px/1.12 var(--font-display); font-variation-settings: "SOFT" 100; margin: 0; text-wrap: balance; }
+.meta { margin: 0; font-size: 14px; color: var(--muted); }
+
+.qty-list { display: flex; flex-direction: column; gap: 10px; }
+.qty-label { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 -2px; }
+.size-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px 10px 16px;
+  border: 1px solid var(--line); border-radius: 18px; background: var(--surface); transition: border-color .15s, background .15s;
+}
+.size-row.on { border-color: var(--ink); background: var(--wash), var(--surface); }
+.size-info { display: flex; flex-direction: column; min-width: 0; }
+.size-info b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.size-info small { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+.stepper { display: flex; align-items: center; gap: 4px; flex: none; }
+.stepper output { min-width: 28px; text-align: center; font-weight: 600; font-variant-numeric: tabular-nums; }
+.qbtn {
+  width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: var(--bg); color: var(--fg);
+  font: 500 20px/1 var(--font-body); cursor: pointer; display: grid; place-items: center; padding: 0;
+}
+.qbtn:hover:not(:disabled) { border-color: var(--ink); }
+.qbtn:disabled { opacity: .35; cursor: not-allowed; }
+
+.scale-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: end; }
+.scale-wrap { overflow-x: auto; min-width: 0; }
+.scale { display: flex; align-items: flex-end; gap: 32px; padding: 8px 4px 6px; min-width: max-content; }
+.fig { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.rect { background: var(--wash), var(--surface); border: 1.5px solid var(--ink); border-radius: 6px; }
+.rect.p { width: 100px; height: 140px; }
+.rect.g { width: 140px; height: 200px; }
+.person { width: 60px; height: 170px; display: block; }
+.person path, .person circle { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+.scale-note { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
+.deco-flor { width: 150px; aspect-ratio: 489 / 900; }
+
+.checkout-wrap { position: relative; isolation: isolate; }
+.checkout-wrap::before {
+  content: ""; position: absolute; inset: -22px; z-index: -1; border-radius: 48px; opacity: .55; filter: blur(38px);
+  background: conic-gradient(from 160deg at 62% 40%, var(--c1), var(--c2), var(--c3), var(--c4), var(--c5), var(--c6), var(--c7), var(--c1));
+}
+.checkout {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 28px;
+  padding: 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 32px;
+}
+.checkout > div { min-width: 0; }
+.order h2 { margin-bottom: 14px; }
+.empty { color: var(--muted); margin: 0; }
+dl { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 16px; font-variant-numeric: tabular-nums; }
+dt { color: var(--muted); min-width: 0; }
+dd { margin: 0; text-align: right; }
+dl .total { font-weight: 600; font-size: 20px; padding-top: 10px; border-top: 1px solid var(--line); color: var(--fg); }
+dl dt.total { color: var(--fg); }
+
+.steps { display: flex; flex-direction: column; gap: 20px; }
+.step { display: grid; grid-template-columns: 34px 1fr; gap: 14px; align-items: start; }
+.step .n { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--ink); background: var(--wash); display: grid; place-items: center; font-weight: 600; font-variant-numeric: tabular-nums; }
+.step h3 { margin: 0 0 4px; font-size: 16px; font-weight: 600; }
+.step p { margin: 0 0 10px; font-size: 14px; color: var(--muted); }
+.btn {
+  display: inline-block; padding: 12px 22px; border-radius: 999px; font: 600 15px var(--font-body);
+  background: var(--accent); color: var(--accent-fg); text-decoration: none; border: 1px solid var(--accent);
+  transition: background .2s, color .2s;
+}
+.btn:hover { background: linear-gradient(110deg, var(--c1), var(--c2), var(--c3), var(--c4), var(--c5)); color: var(--btn-hover-fg); border-color: var(--btn-hover-fg); }
+.btn[aria-disabled="true"] { background: transparent; color: var(--muted); border: 1px dashed var(--line); cursor: not-allowed; }
+.btn[aria-disabled="true"]:hover { background: transparent; color: var(--muted); border-color: var(--line); }
+
+.pay-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn-alt { background: transparent; color: var(--fg); border: 1px solid var(--ink); cursor: pointer; }
+.btn-alt:disabled { color: var(--muted); border: 1px dashed var(--line); cursor: not-allowed; }
+.btn-alt:disabled:hover { background: transparent; color: var(--muted); border-color: var(--line); }
+.pix-panel { margin-top: 18px; padding: 18px; border: 1px solid var(--line); border-radius: 20px; background: var(--bg); display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+.pix-qr { width: 176px; max-width: 100%; border-radius: 14px; overflow: hidden; background: #fff; flex: none; }
+.pix-qr svg { display: block; width: 100%; height: auto; }
+.pix-info { flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.pix-info p { margin: 0; font-size: 14px; color: var(--muted); }
+.pix-info .pix-valor { color: var(--fg); font-size: 16px; }
+.pix-label { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+#pix-code { width: 100%; resize: none; font: 400 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px; }
+.pix-info .btn { align-self: flex-start; cursor: pointer; }
+footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between; }
+.foot-text { display: flex; flex-direction: column; gap: 10px; font-size: 14px; color: var(--muted); min-width: 0; }
+.foot-text p { margin: 0; }
+.foot-text .logo { width: 120px; margin-bottom: 4px; }
+.deco-rosto { width: 130px; aspect-ratio: 484 / 800; }
+
+@media (max-width: 760px) {
+  .hero { margin-bottom: -28px; }
+  .watermark { top: 120px; opacity: .07; }
+  .scale-grid { grid-template-columns: minmax(0, 1fr); }
+  .deco-flor { display: none; }
+  .checkout { padding: 20px; }
+  .wrap { gap: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="ink watermark m-vaso" aria-hidden="true"></div>
+
+<div class="wrap">
+  <nav class="top">
+    <span class="ink logo m-logo" role="img" aria-label="Kami Coelho"></span>
+    <a class="insta" href="https://www.instagram.com/kamicoelh0/" target="_blank" rel="noopener">@kamicoelh0</a>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-text">
+      <h1>Cangas para o <em>verão</em></h1>
+      <p class="lede">Duas estampas autorais em tecido supersoft, cada uma em dois tamanhos. Escolha a sua, preencha os dados de entrega e finalize o pagamento.</p>
+      <p class="notice">As imagens são ilustrativas e não representam o material nem o tamanho real do produto.</p>
+    </div>
+  </header>
+
+  <section aria-labelledby="t-cangas">
+    <div class="section-head">
+      <h2 id="t-cangas">Escolha suas cangas</h2>
+      <p>Você pode levar mais de uma no mesmo pedido, até <span id="max-items">4</span> cangas. Frete fixo de R$ 15,00 por pedido.</p>
+    </div>
+    <div class="products" id="products"></div>
+  </section>
+
+  <section aria-labelledby="t-escala">
+    <div class="scale-grid">
+      <div>
+        <div class="section-head">
+          <h2 id="t-escala">Os tamanhos, em escala</h2>
+          <p>Os retângulos e a pessoa estão na mesma proporção, 1 cm real para 1 px de tela. A pessoa tem 1,70 m.</p>
+        </div>
+        <div class="scale-wrap">
+          <div class="scale">
+            <div class="fig">
+              <svg class="person" viewBox="0 0 60 170" role="img" aria-label="Contorno de uma pessoa de 1,70 m">
+                <circle cx="30" cy="13" r="11"></circle>
+                <path d="M26 25 Q16 27 12 34 L8 72 L13 74 L18 46 L20 60 L19 90 L21 160 L17 168 L28 168 L29 95 L31 95 L32 168 L43 168 L39 160 L41 90 L40 60 L42 46 L47 74 L52 72 L48 34 Q44 27 34 25 Z"></path>
+              </svg>
+              <span>1,70 m</span>
+            </div>
+            <div class="fig"><div class="rect p" role="img" aria-label="Canga de 100 por 140 centímetros"></div><span>100 × 140 cm</span></div>
+            <div class="fig"><div class="rect g" role="img" aria-label="Canga de 140 por 200 centímetros"></div><span>140 × 200 cm</span></div>
+          </div>
+        </div>
+        <p class="scale-note">Em telas pequenas, o navegador pode reduzir o desenho.</p>
+      </div>
+      <div class="ink deco-flor m-flor" role="img" aria-label="Ilustração de uma flor listrada, por Kami Coelho"></div>
+    </div>
+  </section>
+
+  <div class="checkout-wrap">
+    <section class="checkout" aria-labelledby="t-pedido">
+      <div class="order">
+        <h2 id="t-pedido">Seu pedido</h2>
+        <div id="order-body"><p class="empty">Escolha as cangas e os tamanhos acima para ver o valor.</p></div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="n">1</div>
+          <div>
+            <h3>Seus dados</h3>
+            <p>Nome, endereço e contato para a entrega. Os itens e o valor do pedido vão preenchidos.</p>
+            <a class="btn" id="btn-form" aria-disabled="true">Preencher dados</a>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <div>
+            <h3>Pagamento</h3>
+            <p>Depois de enviar seus dados, pague com cartão de crédito pela SumUp ou com Pix.</p>
+            <p id="pay-note" hidden></p>
+            <div class="pay-actions">
+              <a class="btn" id="btn-pay" aria-disabled="true">Pagar com cartão</a>
+              <button type="button" class="btn btn-alt" id="btn-pix" aria-expanded="false" aria-controls="pix-panel" disabled>Pagar com Pix</button>
+            </div>
+            <div class="pix-panel" id="pix-panel" hidden>
+              <div class="pix-qr" id="pix-qr" role="img" aria-label="QR Code do Pix"></div>
+              <div class="pix-info">
+                <p class="pix-valor">Valor: <b id="pix-valor"></b></p>
+                <label for="pix-code" class="pix-label">Pix copia e cola</label>
+                <textarea id="pix-code" rows="4" readonly></textarea>
+                <button type="button" class="btn" id="pix-copy">Copiar código</button>
+                <p id="pix-meta"></p>
+                <p>Abra o app do seu banco, escolha pagar com Pix e leia o QR Code ou cole o código. Depois do pagamento, a Kami confirma o Pix e segue com o envio.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="foot-text">
+      <span class="ink logo m-logo" role="img" aria-label="Kami Coelho"></span>
+      <p>Estampas por Kami Coelho. Tecido supersoft. Cartão processado pela SumUp. Pix direto para a Kami.</p>
+      <p>Fale com a Kami pelo insta <a href="https://www.instagram.com/kamicoelh0/" target="_blank" rel="noopener">@kamicoelh0</a></p>
+    </div>
+    <div class="ink deco-rosto m-rosto" role="img" aria-label="Ilustração de um vaso com uma flor, por Kami Coelho"></div>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+/* ============ CONFIGURAÇÃO: preencher quando os links estiverem prontos ============ */
+var CONFIG = {
+  frete: 15,          /* por pedido */
+  maxItems: 4,        /* máximo de cangas por pedido */
+  /* Link do Google Forms que grava na planilha. */
+  formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdgdSw65M933AgYgnFWmkUBEbc4DmGAofJjLFESOXPZScj27Q/viewform",
+  /* Códigos dos campos do Forms para pré-preencher (ex.: "entry.123456789"). Opcional. */
+  formEntries: { pedido: "entry.123505002", total: "entry.1506122416" },
+  /* Um link de pagamento SumUp para cada valor total possível (frete incluso). Chave = total em reais. */
+  payLinks: {
+    "175": "https://pay.sumup.com/b2c/Q4OH74AL",   /* 1 × 100x140 */
+    "265": "https://pay.sumup.com/b2c/QBR19Y3T",   /* 1 × 140x200 */
+    "335": "https://pay.sumup.com/b2c/QYFDI0IR",   /* 2 × 100x140 */
+    "425": "https://pay.sumup.com/b2c/QD4S4T61",   /* 1 × 100x140 + 1 × 140x200 */
+    "495": "https://pay.sumup.com/b2c/QIXC02T2",   /* 3 × 100x140 */
+    "515": "https://pay.sumup.com/b2c/QGTJK1CG",   /* 2 × 140x200 */
+    "585": "https://pay.sumup.com/b2c/QF1GR6R8",   /* 2 × 100x140 + 1 × 140x200 */
+    "655": "https://pay.sumup.com/b2c/QOMO7K3A",   /* 4 × 100x140 */
+    "675": "https://pay.sumup.com/b2c/Q6Y3GSKV",   /* 1 × 100x140 + 2 × 140x200 */
+    "745": "https://pay.sumup.com/b2c/QOVQ1MA4",   /* 3 × 100x140 + 1 × 140x200 */
+    "765": "https://pay.sumup.com/b2c/Q9S6O8SD",   /* 3 × 140x200 */
+    "835": "https://pay.sumup.com/b2c/QTKVF82C",   /* 2 × 100x140 + 2 × 140x200 */
+    "925": "https://pay.sumup.com/b2c/Q3PNBTO9",   /* 1 × 100x140 + 3 × 140x200 */
+    "1015": "https://pay.sumup.com/b2c/Q94XKOCD"   /* 4 × 140x200 */
+  },
+  /* Opcional: link de valor aberto, usado se algum total acima estiver sem link. */
+  payLinkOpen: "",
+  /* Pix: chave (e-mail, telefone no formato +5541999999999, CPF/CNPJ só com números ou chave aleatória), nome do favorecido e cidade. */
+  pix: { chave: "43a2b35a-7111-4ecb-ae0b-e54d617c7034", nome: "Kamila Elisabeth Coelho", cidade: "Curitiba" }
+};
+
+var PRODUCTS = [
+  { id: "vento", nome: "ouço seu nome no vento", arte: "img/vento-arte.jpg", praia: "img/vento-praia.jpg" },
+  { id: "dimensoes", nome: "dimensões", arte: "img/dimensoes-arte.jpg", praia: "img/dimensoes-praia.jpg" }
+];
+var SIZES = [
+  { id: "100x140", label: "100 × 140 cm", price: 160 },
+  { id: "140x200", label: "140 × 200 cm", price: 250 }
+];
+
+function brl(v) {
+  return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
+
+var qty = {};
+PRODUCTS.forEach(function (p) { SIZES.forEach(function (s) { qty[p.id + "-" + s.id] = 0; }); });
+
+function summary() {
+  var lines = [], count = 0, subtotal = 0;
+  PRODUCTS.forEach(function (p) {
+    SIZES.forEach(function (s) {
+      var q = qty[p.id + "-" + s.id];
+      if (q > 0) {
+        lines.push({ q: q, p: p, s: s, sum: q * s.price });
+        count += q;
+        subtotal += q * s.price;
+      }
+    });
+  });
+  return { lines: lines, count: count, subtotal: subtotal, total: subtotal + (count ? CONFIG.frete : 0) };
+}
+
+function renderProducts() {
+  var host = document.getElementById("products");
+  host.innerHTML = PRODUCTS.map(function (p) {
+    var thumb = function (src, alt, pressed) {
+      return '<button type="button" class="thumb" data-p="' + p.id + '" data-src="' + src + '" data-alt="' + alt + '" aria-pressed="' + pressed +
+        '" aria-label="' + alt + '"><img src="' + src + '" alt="" loading="lazy"></button>';
+    };
+    var rows = SIZES.map(function (s) {
+      var key = p.id + "-" + s.id;
+      return '<div class="size-row" data-row="' + key + '">' +
+        '<div class="size-info"><b>' + s.label + "</b><small>" + brl(s.price) + "</small></div>" +
+        '<div class="stepper" role="group" aria-label="Quantidade, ' + s.label + '">' +
+        '<button type="button" class="qbtn" data-key="' + key + '" data-delta="-1" aria-label="Diminuir quantidade, ' + s.label + '">−</button>' +
+        '<output data-qty="' + key + '" aria-live="polite">0</output>' +
+        '<button type="button" class="qbtn" data-key="' + key + '" data-delta="1" aria-label="Aumentar quantidade, ' + s.label + '">+</button>' +
+        "</div></div>";
+    }).join("");
+    return '<article class="product">' +
+      '<div class="gallery"><div class="stage"><img id="stage-' + p.id + '" src="' + p.arte + '" alt="Estampa da canga ' + p.nome + '"></div>' +
+      '<div class="thumbs">' + thumb(p.arte, "Estampa da canga " + p.nome, "true") + thumb(p.praia, "Canga " + p.nome + " na praia", "false") + "</div></div>" +
+      "<h3>" + p.nome + "</h3>" +
+      '<p class="meta">Canga em tecido supersoft</p>' +
+      '<div class="qty-list"><p class="qty-label">Tamanho e quantidade</p>' + rows + "</div>" +
+      "</article>";
+  }).join("");
+
+  host.addEventListener("click", function (e) {
+    var t = e.target.closest ? e.target.closest(".thumb") : null;
+    if (t) {
+      var stage = document.getElementById("stage-" + t.getAttribute("data-p"));
+      stage.src = t.getAttribute("data-src");
+      stage.alt = t.getAttribute("data-alt");
+      var sibs = t.parentNode.querySelectorAll(".thumb");
+      for (var i = 0; i < sibs.length; i++) sibs[i].setAttribute("aria-pressed", sibs[i] === t ? "true" : "false");
+      return;
+    }
+    var b = e.target.closest ? e.target.closest(".qbtn") : null;
+    if (b && !b.disabled) {
+      var key = b.getAttribute("data-key");
+      var delta = parseInt(b.getAttribute("data-delta"), 10);
+      var next = qty[key] + delta;
+      if (next < 0 || (delta > 0 && summary().count >= CONFIG.maxItems)) return;
+      qty[key] = next;
+      refresh();
+    }
+  });
+}
+
+function setLink(el, href) {
+  if (href) {
+    el.setAttribute("href", href);
+    el.setAttribute("target", "_blank");
+    el.setAttribute("rel", "noopener");
+    el.setAttribute("aria-disabled", "false");
+  } else {
+    el.removeAttribute("href");
+    el.removeAttribute("target");
+    el.setAttribute("aria-disabled", "true");
+  }
+}
+
+function formLink(sum) {
+  if (!CONFIG.formUrl) return "";
+  var url = CONFIG.formUrl;
+  var text = sum.lines.map(function (l) { return l.q + "× " + l.p.nome + " " + l.s.label; }).join("; ");
+  var extra = [];
+  if (CONFIG.formEntries.pedido) extra.push(CONFIG.formEntries.pedido + "=" + encodeURIComponent(text));
+  if (CONFIG.formEntries.total) extra.push(CONFIG.formEntries.total + "=" + encodeURIComponent(brl(sum.total)));
+  if (extra.length) url += (url.indexOf("?") > -1 ? "&" : "?") + "usp=pp_url&" + extra.join("&");
+  return url;
+}
+
+/* PIX:INICIO */
+function crc16(str) {
+  var crc = 0xFFFF;
+  for (var i = 0; i < str.length; i++) {
+    crc ^= str.charCodeAt(i) << 8;
+    for (var j = 0; j < 8; j++) {
+      crc = (crc & 0x8000) ? ((crc << 1) ^ 0x1021) : (crc << 1);
+      crc &= 0xFFFF;
+    }
+  }
+  var h = crc.toString(16).toUpperCase();
+  while (h.length < 4) h = "0" + h;
+  return h;
+}
+function tlv(id, val) {
+  var l = String(val.length);
+  if (l.length < 2) l = "0" + l;
+  return id + l + val;
+}
+function asciiUp(str, max) {
+  return String(str).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^A-Za-z0-9 ]/g, "").toUpperCase().trim().slice(0, max);
+}
+function pixPayload(chave, nome, cidade, valor) {
+  var conta = tlv("00", "br.gov.bcb.pix") + tlv("01", chave);
+  var p = tlv("00", "01") + tlv("01", "11") + tlv("26", conta) + tlv("52", "0000") + tlv("53", "986") +
+    tlv("54", valor.toFixed(2)) + tlv("58", "BR") + tlv("59", asciiUp(nome, 25)) + tlv("60", asciiUp(cidade, 15)) +
+    tlv("62", tlv("05", "***"));
+  p += "6304";
+  return p + crc16(p);
+}
+/* PIX:FIM */
+
+function pixConfigured() {
+  return !!(CONFIG.pix && CONFIG.pix.chave && CONFIG.pix.nome && CONFIG.pix.cidade);
+}
+
+function renderPix(sum) {
+  var btn = document.getElementById("btn-pix");
+  var panel = document.getElementById("pix-panel");
+  var ok = !!sum && pixConfigured();
+  btn.disabled = !ok;
+  if (!ok) {
+    panel.hidden = true;
+    btn.setAttribute("aria-expanded", "false");
+    return;
+  }
+  if (panel.hidden) return;
+  var payload = pixPayload(CONFIG.pix.chave, CONFIG.pix.nome, CONFIG.pix.cidade, sum.total);
+  document.getElementById("pix-valor").textContent = brl(sum.total);
+  document.getElementById("pix-code").value = payload;
+  document.getElementById("pix-meta").textContent = "Favorecido: " + CONFIG.pix.nome + ". Chave Pix: " + CONFIG.pix.chave + ".";
+  var qrHost = document.getElementById("pix-qr");
+  qrHost.innerHTML = "";
+  try {
+    var qr = qrcode(0, "M");
+    qr.addData(payload);
+    qr.make();
+    qrHost.innerHTML = qr.createSvgTag({ cellSize: 4, margin: 2, scalable: true });
+    qrHost.hidden = false;
+  } catch (e) {
+    qrHost.hidden = true;
+  }
+}
+
+function refresh() {
+  var sum = summary();
+
+  PRODUCTS.forEach(function (p) {
+    SIZES.forEach(function (s) {
+      var key = p.id + "-" + s.id;
+      var out = document.querySelector('[data-qty="' + key + '"]');
+      if (out) out.textContent = qty[key];
+      var row = document.querySelector('[data-row="' + key + '"]');
+      if (row) row.classList.toggle("on", qty[key] > 0);
+    });
+  });
+  var btns = document.querySelectorAll(".qbtn");
+  for (var i = 0; i < btns.length; i++) {
+    var d = parseInt(btns[i].getAttribute("data-delta"), 10);
+    var k = btns[i].getAttribute("data-key");
+    btns[i].disabled = d < 0 ? qty[k] <= 0 : sum.count >= CONFIG.maxItems;
+  }
+
+  var body = document.getElementById("order-body");
+  var btnForm = document.getElementById("btn-form");
+  var btnPay = document.getElementById("btn-pay");
+  var note = document.getElementById("pay-note");
+  if (!sum.count) {
+    body.innerHTML = '<p class="empty">Escolha as cangas e os tamanhos acima para ver o valor.</p>';
+    setLink(btnForm, ""); setLink(btnPay, "");
+    note.hidden = true;
+    renderPix(null);
+    return;
+  }
+  body.innerHTML = "<dl>" +
+    sum.lines.map(function (l) {
+      return "<dt>" + l.q + " × " + l.p.nome + ", " + l.s.label + "</dt><dd>" + brl(l.sum) + "</dd>";
+    }).join("") +
+    "<dt>Frete</dt><dd>" + brl(CONFIG.frete) + "</dd>" +
+    '<dt class="total">Total</dt><dd class="total">' + brl(sum.total) + "</dd></dl>";
+
+  setLink(btnForm, formLink(sum));
+
+  var exact = CONFIG.payLinks[String(sum.total)] || "";
+  if (exact) {
+    setLink(btnPay, exact);
+    note.hidden = true;
+  } else if (CONFIG.payLinkOpen) {
+    setLink(btnPay, CONFIG.payLinkOpen);
+    note.textContent = "No link de pagamento, digite o valor exato do pedido: " + brl(sum.total) + ".";
+    note.hidden = false;
+  } else {
+    setLink(btnPay, "");
+    note.hidden = true;
+  }
+  renderPix(sum);
+}
+
+document.getElementById("max-items").textContent = CONFIG.maxItems;
+renderProducts();
+refresh();
+document.getElementById("btn-pix").addEventListener("click", function () {
+  var panel = document.getElementById("pix-panel");
+  if (this.disabled) return;
+  panel.hidden = !panel.hidden;
+  this.setAttribute("aria-expanded", String(!panel.hidden));
+  refresh();
+});
+document.getElementById("pix-copy").addEventListener("click", function () {
+  var ta = document.getElementById("pix-code");
+  var btn = this;
+  function done() {
+    btn.textContent = "Código copiado";
+    setTimeout(function () { btn.textContent = "Copiar código"; }, 2000);
+  }
+  function fallback() {
+    ta.focus(); ta.select();
+    try { if (document.execCommand("copy")) done(); } catch (e) {}
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(ta.value).then(done, fallback);
+  } else {
+    fallback();
+  }
+});
+document.addEventListener("click", function (e) {
+  var a = e.target.closest && e.target.closest('a[aria-disabled="true"]');
+  if (a) e.preventDefault();
+});
+</script>
+
+</body>
+</html>
